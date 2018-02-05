@@ -15,14 +15,14 @@ public class SearchTool {
     public List<Guitar> searchGuitar(Guitar requiredGuitar) {
         List<Guitar> matchingGuitars = new ArrayList<Guitar>();
         for(Guitar guitar : inventory.getGuitars()) {
-            if(isGuitarAMatch(requiredGuitar, guitar)) {
+            if(isGuitarMatching(requiredGuitar, guitar)) {
                 matchingGuitars.add(guitar);
             }
         }
         return matchingGuitars;
     }
 
-    private boolean isGuitarAMatch(Guitar requiredGuitar, Guitar guitar) {
+    private boolean isGuitarMatching(Guitar requiredGuitar, Guitar guitar) {
         Builder builder = requiredGuitar.getBuilder();
         String model = requiredGuitar.getModel();
         Wood backWood = requiredGuitar.getBackWood();
