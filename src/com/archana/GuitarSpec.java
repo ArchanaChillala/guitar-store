@@ -5,6 +5,8 @@ import com.archana.domain.Builder;
 import com.archana.domain.Type;
 import com.archana.domain.Wood;
 
+import static org.apache.commons.lang.StringUtils.isNotBlank;
+
 public class GuitarSpec {
     private Builder builder;
     private String model;
@@ -38,5 +40,13 @@ public class GuitarSpec {
 
     public Wood getTopWood() {
         return topWood;
+    }
+
+    public boolean matches(GuitarSpec requiredSpec) {
+        return builder.equals(requiredSpec.getBuilder()) ||
+            isNotBlank(model) && model.equalsIgnoreCase(requiredSpec.getModel()) ||
+            type.equals(requiredSpec.getType()) ||
+            backWood.equals(requiredSpec.getBackWood()) ||
+            topWood.equals(requiredSpec.getTopWood());
     }
 }

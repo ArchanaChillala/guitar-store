@@ -10,10 +10,9 @@ public class GuitarStore {
     public static void main(String[] args) {
 	    Inventory inventory = new Inventory();
         loadGuitarsTo(inventory);
-	    SearchTool searchTool = new SearchTool(inventory);
 
 	    GuitarSpec searchItem = new GuitarSpec(COLLINGS, "FF", ELECTRIC, MAPLE, BRAZILIAN_ROSEWOOD);
-	    System.out.println("Matching Guitars : " + searchTool.searchGuitar(searchItem));
+	    System.out.println("Matching Guitars : " + inventory.searchGuitar(searchItem));
     }
 
     private static void loadGuitarsTo(Inventory inventory) {

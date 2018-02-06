@@ -11,10 +11,6 @@ import java.util.List;
 public class Inventory {
    private List<Guitar> guitars = new ArrayList();
 
-   public List<Guitar> getGuitars() {
-       return guitars;
-   }
-
     public void addGuitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood) {
        GuitarSpec guitarSpec = new GuitarSpec(builder, model, type, backWood, topWood);
        Guitar guitar = new Guitar(serialNumber, price, guitarSpec);
@@ -29,5 +25,15 @@ public class Inventory {
        }
        return null;
    }
+
+    public List<Guitar> searchGuitar(GuitarSpec requiredSpec) {
+        List<Guitar> matchingGuitars = new ArrayList<Guitar>();
+        for(Guitar guitar : guitars) {
+            if((guitar.getGuitarSpec().matches(requiredSpec))) {
+                matchingGuitars.add(guitar);
+            }
+        }
+        return matchingGuitars;
+    }
 }
 
