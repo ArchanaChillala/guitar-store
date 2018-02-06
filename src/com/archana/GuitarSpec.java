@@ -1,6 +1,10 @@
 package com.archana;
 
 
+import com.archana.domain.Builder;
+import com.archana.domain.Type;
+import com.archana.domain.Wood;
+
 public class GuitarSpec {
     private Builder builder;
     private String model;

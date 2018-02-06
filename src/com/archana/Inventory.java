@@ -1,6 +1,10 @@
 package com.archana;
 
 
+import com.archana.domain.Builder;
+import com.archana.domain.Type;
+import com.archana.domain.Wood;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +16,8 @@ public class Inventory {
    }
 
     public void addGuitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood) {
-       Guitar guitar = new Guitar(serialNumber, price, builder, model, type, backWood, topWood);
+       GuitarSpec guitarSpec = new GuitarSpec(builder, model, type, backWood, topWood);
+       Guitar guitar = new Guitar(serialNumber, price, guitarSpec);
        guitars.add(guitar);
    }
 

@@ -1,4 +1,4 @@
-package com.archana;
+package com.archana.domain;
 
 public enum Wood {
     INDIAN_ROSEWOOD,

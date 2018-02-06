@@ -1,11 +1,9 @@
 package com.archana;
 
-import static com.archana.Builder.FENDER;
-import static com.archana.Builder.GIBSON;
-import static com.archana.Builder.MARTIN;
-import static com.archana.Type.ACOUSTIC;
-import static com.archana.Type.ELECTRIC;
-import static com.archana.Wood.*;
+import static com.archana.domain.Builder.*;
+import static com.archana.domain.Type.ACOUSTIC;
+import static com.archana.domain.Type.ELECTRIC;
+import static com.archana.domain.Wood.*;
 
 public class GuitarStore {
 
@@ -14,7 +12,8 @@ public class GuitarStore {
         loadGuitarsTo(inventory);
 	    SearchTool searchTool = new SearchTool(inventory);
 
-	    System.out.println("Matching Guitars : " + searchTool.searchGuitar(inventory.getGuitar("133")));
+	    GuitarSpec searchItem = new GuitarSpec(COLLINGS, "FF", ELECTRIC, MAPLE, BRAZILIAN_ROSEWOOD);
+	    System.out.println("Matching Guitars : " + searchTool.searchGuitar(searchItem));
     }
 
     private static void loadGuitarsTo(Inventory inventory) {

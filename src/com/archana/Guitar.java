@@ -1,15 +1,16 @@
 package com.archana;
 
 
-public class Guitar extends GuitarSpec {
+public class Guitar {
 
     private String serialNumber;
     private double price;
+    private GuitarSpec guitarSpec;
 
-    public Guitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood) {
-        super(builder, model, type, backWood, topWood);
+    public Guitar(String serialNumber, double price, GuitarSpec guitarSpec) {
         this.serialNumber = serialNumber;
         this.price = price;
+        this.guitarSpec = guitarSpec;
     }
 
     public String getSerialNumber() {
@@ -20,12 +21,16 @@ public class Guitar extends GuitarSpec {
         return price;
     }
 
+    public GuitarSpec getGuitarSpec() {
+        return guitarSpec;
+    }
+
     @Override
     public String toString() {
         return "Guitar {" +
             "serialNumber='" + serialNumber + '\'' +
-            ", builder='" + super.getBuilder() + '\'' +
-            ", model='" + super.getModel() + '\'' +
+            ", builder='" + guitarSpec.getBuilder() + '\'' +
+            ", model='" + guitarSpec.getModel() + '\'' +
             '}';
     }
 }
