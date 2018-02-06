@@ -31,6 +31,7 @@ public class Guitar {
             "serialNumber='" + serialNumber + '\'' +
             ", builder='" + guitarSpec.getBuilder() + '\'' +
             ", model='" + guitarSpec.getModel() + '\'' +
+            ", price='" + price + '\'' +
             '}';
     }
 }

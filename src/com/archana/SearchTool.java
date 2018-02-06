@@ -1,6 +1,7 @@
 package com.archana;
 
 import com.archana.domain.Builder;
+import com.archana.domain.Type;
 import com.archana.domain.Wood;
 
 import java.util.ArrayList;
@@ -25,14 +26,16 @@ public class SearchTool {
         return matchingGuitars;
     }
 
-    private boolean isGuitarMatching(GuitarSpec requiredGuitar, GuitarSpec spec) {
-        Builder builder = requiredGuitar.getBuilder();
-        String model = requiredGuitar.getModel();
-        Wood backWood = requiredGuitar.getBackWood();
-        Wood topWood = requiredGuitar.getTopWood();
+    private boolean isGuitarMatching(GuitarSpec requiredSpec, GuitarSpec spec) {
+        Builder builder = requiredSpec.getBuilder();
+        String model = requiredSpec.getModel();
+        Type type = requiredSpec.getType();
+        Wood backWood = requiredSpec.getBackWood();
+        Wood topWood = requiredSpec.getTopWood();
 
         return builder.equals(spec.getBuilder()) ||
             isNotBlank(model) && model.equalsIgnoreCase(spec.getModel()) ||
+            type.equals(spec.getType()) ||
             backWood.equals(spec.getBackWood()) ||
             topWood.equals(spec.getTopWood());
     }
