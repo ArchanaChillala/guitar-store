@@ -1,4 +1,4 @@
-package com.archana.domain;
+package com.archana.specs;
 
 public enum Type {
     ACOUSTIC,

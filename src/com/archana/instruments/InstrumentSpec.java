@@ -1,20 +1,20 @@
-package com.archana;
+package com.archana.instruments;
 
 
-import com.archana.domain.Builder;
-import com.archana.domain.Type;
-import com.archana.domain.Wood;
+import com.archana.specs.Builder;
+import com.archana.specs.Type;
+import com.archana.specs.Wood;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
-public class GuitarSpec {
+public abstract class InstrumentSpec {
     private Builder builder;
     private String model;
     private Type type;
     private Wood backWood;
     private Wood topWood;
 
-    public GuitarSpec(Builder builder, String model, Type type, Wood backWood, Wood topWood) {
+    public InstrumentSpec(Builder builder, String model, Type type, Wood backWood, Wood topWood) {
         this.builder = builder;
         this.model = model;
         this.type = type;
@@ -42,7 +42,7 @@ public class GuitarSpec {
         return topWood;
     }
 
-    public boolean matches(GuitarSpec requiredSpec) {
+    public boolean matches(InstrumentSpec requiredSpec) {
         return builder.equals(requiredSpec.getBuilder()) ||
             isNotBlank(model) && model.equalsIgnoreCase(requiredSpec.getModel()) ||
             type.equals(requiredSpec.getType()) ||

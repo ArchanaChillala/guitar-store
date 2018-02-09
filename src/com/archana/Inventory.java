@@ -1,26 +1,37 @@
 package com.archana;
 
 
-import com.archana.domain.Builder;
-import com.archana.domain.Type;
-import com.archana.domain.Wood;
+import com.archana.instruments.Guitar;
+import com.archana.instruments.GuitarSpec;
+import com.archana.instruments.Instrument;
+import com.archana.instruments.InstrumentSpec;
+import com.archana.instruments.Mandolin;
+import com.archana.instruments.MandolinSpec;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Inventory {
-   private List<Guitar> guitars = new ArrayList();
+   private List<Instrument> instruments;
 
-    public void addGuitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood) {
-       GuitarSpec guitarSpec = new GuitarSpec(builder, model, type, backWood, topWood);
-       Guitar guitar = new Guitar(serialNumber, price, guitarSpec);
-       guitars.add(guitar);
+    public Inventory() {
+        instruments = new ArrayList();
+    }
+
+    public void addInstrument(String serialNumber, double price, InstrumentSpec spec) {
+        Instrument instrument;
+        if(spec instanceof GuitarSpec)
+            instrument = new Guitar(serialNumber, price, (GuitarSpec) spec);
+        else
+            instrument = new Mandolin(serialNumber, price, (MandolinSpec) spec);
+        instruments.add(instrument);
    }
 
-   public Guitar getGuitar(String serialNumber) {
-       for(Guitar guitar : guitars) {
-           if(serialNumber.equals(guitar.getSerialNumber())) {
-               return guitar;
+   public Instrument getInstrument(String serialNumber) {
+       for(Instrument instrument : instruments) {
+           if(serialNumber.equals(instrument.getSerialNumber())) {
+               return instrument;
            }
        }
        return null;
@@ -28,12 +39,29 @@ public class Inventory {
 
     public List<Guitar> searchGuitar(GuitarSpec requiredSpec) {
         List<Guitar> matchingGuitars = new ArrayList<Guitar>();
-        for(Guitar guitar : guitars) {
-            if((guitar.getGuitarSpec().matches(requiredSpec))) {
-                matchingGuitars.add(guitar);
+        for(Iterator i = instruments.iterator(); i.hasNext();) {
+            if(i.next() instanceof Guitar) {
+                Guitar guitar = (Guitar) i.next();
+                if((guitar.getSpec().matches(requiredSpec))) {
+                    matchingGuitars.add(guitar);
+                }
             }
         }
         return matchingGuitars;
+    }
+
+    public List<Mandolin> searchMandolin(MandolinSpec requiredSpec) {
+        List<Mandolin> matchingMandolins = new ArrayList<Mandolin>();
+        for(Iterator i = instruments.iterator(); i.hasNext();) {
+            if(i.next() instanceof Mandolin) {
+                Mandolin mandolin = (Mandolin) i.next();
+                if((mandolin.getSpec().matches(requiredSpec))) {
+                    matchingMandolins.add(mandolin);
+                }
+
+            }
+        }
+        return matchingMandolins;
     }
 }
 
