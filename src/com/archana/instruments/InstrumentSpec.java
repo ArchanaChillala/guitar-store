@@ -1,52 +1,34 @@
 package com.archana.instruments;
 
 
-import com.archana.specs.Builder;
-import com.archana.specs.Type;
-import com.archana.specs.Wood;
-
-import static org.apache.commons.lang.StringUtils.isNotBlank;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InstrumentSpec {
-    private Builder builder;
-    private String model;
-    private Type type;
-    private Wood backWood;
-    private Wood topWood;
+    private Map properties;
 
-    public InstrumentSpec(Builder builder, String model, Type type, Wood backWood, Wood topWood) {
-        this.builder = builder;
-        this.model = model;
-        this.type = type;
-        this.backWood = backWood;
-        this.topWood = topWood;
+    public InstrumentSpec(Map properties) {
+        if(properties == null)
+            this.properties = new HashMap();
+        else
+            this.properties = new HashMap(properties);
     }
 
-    public Builder getBuilder() {
-        return builder;
+    public Map getProperties() {
+        return properties;
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public Wood getBackWood() {
-        return backWood;
-    }
-
-    public Wood getTopWood() {
-        return topWood;
+    public Object getProperty(String propertyName) {
+        return properties.get(propertyName);
     }
 
     public boolean matches(InstrumentSpec requiredSpec) {
-        return builder.equals(requiredSpec.getBuilder()) ||
-            isNotBlank(model) && model.equalsIgnoreCase(requiredSpec.getModel()) ||
-            type.equals(requiredSpec.getType()) ||
-            backWood.equals(requiredSpec.getBackWood()) ||
-            topWood.equals(requiredSpec.getTopWood());
+        for(Object propertyName : properties.keySet()) {
+            String property = (String) propertyName;
+            if(!properties.get(property).equals(requiredSpec.getProperty(property))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

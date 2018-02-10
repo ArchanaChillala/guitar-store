@@ -1,5 +1,7 @@
 package com.archana.instruments;
 
+import com.archana.specs.InstrumentType;
+
 public class Instrument {
     private String serialNumber;
     private double price;
@@ -39,8 +41,7 @@ public class Instrument {
         return "Instrument {" +
             "serialNumber='" + serialNumber + '\'' +
             ", type='" + type + '\'' +
-            ", builder='" + spec.getBuilder() + '\'' +
-            ", model='" + spec.getModel() + '\'' +
+            ", properties='" + spec.getProperties() + '\'' +
             ", price='" + price + '\'' +
             '}';
     }

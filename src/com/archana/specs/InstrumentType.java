@@ -1,4 +1,4 @@
-package com.archana.instruments;
+package com.archana.specs;
 
 public enum InstrumentType {
     GUITAR,

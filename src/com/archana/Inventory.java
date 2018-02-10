@@ -3,7 +3,7 @@ package com.archana;
 
 import com.archana.instruments.Instrument;
 import com.archana.instruments.InstrumentSpec;
-import com.archana.instruments.InstrumentType;
+import com.archana.specs.InstrumentType;
 
 import java.util.ArrayList;
 import java.util.List;

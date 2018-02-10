@@ -1,15 +1,16 @@
 package com.archana;
 
-import com.archana.instruments.GuitarSpec;
-import com.archana.instruments.MandolinSpec;
+import com.archana.instruments.Instrument;
+import com.archana.instruments.InstrumentSpec;
 
-import static com.archana.instruments.InstrumentType.GUITAR;
-import static com.archana.instruments.InstrumentType.MANDOLIN;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.archana.specs.InstrumentType.*;
 import static com.archana.specs.Builder.*;
-import static com.archana.specs.Style.A;
-import static com.archana.specs.Style.F;
-import static com.archana.specs.Type.ACOUSTIC;
-import static com.archana.specs.Type.ELECTRIC;
+import static com.archana.specs.Style.*;
+import static com.archana.specs.Type.*;
 import static com.archana.specs.Wood.*;
 
 public class Store {
@@ -18,20 +19,44 @@ public class Store {
 	    Inventory inventory = new Inventory();
         loadInstrumentsTo(inventory);
 
-	    GuitarSpec searchItem = new GuitarSpec(COLLINGS, "FF", ELECTRIC, MAPLE, BRAZILIAN_ROSEWOOD);
-	    System.out.println("Matching Instruments : " + inventory.searchInstrument(searchItem));
+        Map properties = new HashMap();
+        properties.put("builder", FENDER);
+        properties.put("model", "FF");
+        properties.put("type", ELECTRIC);
+        properties.put("topWood", MAPLE);
+        properties.put("backWood", INDIAN_ROSEWOOD);
+
+        InstrumentSpec searchItem = new InstrumentSpec(properties);
+	    List<Instrument> matchingInstruments = inventory.searchInstrument(searchItem);
+	    if(matchingInstruments.isEmpty())
+            System.out.println("Sorry, No matching instruments found ");
+	    else
+            System.out.println("Matching Instruments : " + matchingInstruments);
     }
 
     private static void loadInstrumentsTo(Inventory inventory) {
 
         //Loading Guitars
-        inventory.addInstrument("123", 220, GUITAR, new GuitarSpec(FENDER, "BB", ELECTRIC, INDIAN_ROSEWOOD, MAHOGANY));
-        inventory.addInstrument("133", 330, GUITAR,new GuitarSpec(GIBSON, "FF", ACOUSTIC, MAPLE, INDIAN_ROSEWOOD));
-        inventory.addInstrument("136", 330, GUITAR, new GuitarSpec(MARTIN, "JJ", ACOUSTIC, MAPLE, BRAZILIAN_ROSEWOOD));
+        Map properties = new HashMap();
+        properties.put("builder", FENDER);
+        properties.put("model", "FF");
+        properties.put("type", ELECTRIC);
+        properties.put("topWood", MAPLE);
+        properties.put("backWood", INDIAN_ROSEWOOD);
+        inventory.addInstrument("123", 220, GUITAR, new InstrumentSpec(properties));
 
         //Loading Mandolins
-        inventory.addInstrument("125", 220, MANDOLIN, new MandolinSpec(FENDER, "BB", F, ELECTRIC, INDIAN_ROSEWOOD, MAHOGANY));
-        inventory.addInstrument("138", 330, MANDOLIN, new MandolinSpec(GIBSON, "FF", F, ACOUSTIC, MAPLE, INDIAN_ROSEWOOD));
-        inventory.addInstrument("147", 330, MANDOLIN, new MandolinSpec(MARTIN, "JJ", A, ACOUSTIC, MAPLE, BRAZILIAN_ROSEWOOD));
+        properties.put("builder", GIBSON);
+        properties.put("model", "FF");
+        properties.put("type", ACOUSTIC);
+        properties.put("style", F);
+        properties.put("topWood", MAHOGANY);
+        properties.put("backWood", BRAZILIAN_ROSEWOOD);
+        inventory.addInstrument("125", 220, MANDOLIN, new InstrumentSpec(properties));
+
+        properties.put("model", "GG");
+        properties.put("type", ELECTRIC);
+        properties.put("style", A);
+        inventory.addInstrument("129", 550, MANDOLIN, new InstrumentSpec(properties));
     }
 }
