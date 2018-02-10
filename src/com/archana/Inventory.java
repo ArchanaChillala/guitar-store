@@ -1,15 +1,10 @@
 package com.archana;
 
 
-import com.archana.instruments.Guitar;
-import com.archana.instruments.GuitarSpec;
 import com.archana.instruments.Instrument;
 import com.archana.instruments.InstrumentSpec;
-import com.archana.instruments.Mandolin;
-import com.archana.instruments.MandolinSpec;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Inventory {
@@ -20,11 +15,7 @@ public class Inventory {
     }
 
     public void addInstrument(String serialNumber, double price, InstrumentSpec spec) {
-        Instrument instrument;
-        if(spec instanceof GuitarSpec)
-            instrument = new Guitar(serialNumber, price, (GuitarSpec) spec);
-        else
-            instrument = new Mandolin(serialNumber, price, (MandolinSpec) spec);
+        Instrument instrument = new Instrument(serialNumber, price, spec);
         instruments.add(instrument);
    }
 
@@ -37,31 +28,14 @@ public class Inventory {
        return null;
    }
 
-    public List<Guitar> searchGuitar(GuitarSpec requiredSpec) {
-        List<Guitar> matchingGuitars = new ArrayList<Guitar>();
-        for(Iterator i = instruments.iterator(); i.hasNext();) {
-            if(i.next() instanceof Guitar) {
-                Guitar guitar = (Guitar) i.next();
-                if((guitar.getSpec().matches(requiredSpec))) {
-                    matchingGuitars.add(guitar);
-                }
+    public List<Instrument> searchInstrument(InstrumentSpec requiredSpec) {
+        List<Instrument> matchingInstruments = new ArrayList<Instrument>();
+        for(Instrument instrument : instruments) {
+            if((instrument.getSpec().matches(requiredSpec))) {
+                matchingInstruments.add(instrument);
             }
         }
-        return matchingGuitars;
-    }
-
-    public List<Mandolin> searchMandolin(MandolinSpec requiredSpec) {
-        List<Mandolin> matchingMandolins = new ArrayList<Mandolin>();
-        for(Iterator i = instruments.iterator(); i.hasNext();) {
-            if(i.next() instanceof Mandolin) {
-                Mandolin mandolin = (Mandolin) i.next();
-                if((mandolin.getSpec().matches(requiredSpec))) {
-                    matchingMandolins.add(mandolin);
-                }
-
-            }
-        }
-        return matchingMandolins;
+        return matchingInstruments;
     }
 }
 

@@ -17,7 +17,7 @@ public class Store {
         loadInstrumentsTo(inventory);
 
 	    GuitarSpec searchItem = new GuitarSpec(COLLINGS, "FF", ELECTRIC, MAPLE, BRAZILIAN_ROSEWOOD);
-	    System.out.println("Matching Instruments : " + inventory.searchGuitar(searchItem));
+	    System.out.println("Matching Instruments : " + inventory.searchInstrument(searchItem));
     }
 
     private static void loadInstrumentsTo(Inventory inventory) {
@@ -28,8 +28,8 @@ public class Store {
         inventory.addInstrument("136", 330, new GuitarSpec(MARTIN, "JJ", ACOUSTIC, MAPLE, BRAZILIAN_ROSEWOOD));
 
         //Loading Mandolins
-        inventory.addInstrument("123", 220, new MandolinSpec(FENDER, "BB", F, ELECTRIC, INDIAN_ROSEWOOD, MAHOGANY));
-        inventory.addInstrument("133", 330, new MandolinSpec(GIBSON, "FF", F, ACOUSTIC, MAPLE, INDIAN_ROSEWOOD));
-        inventory.addInstrument("136", 330, new MandolinSpec(MARTIN, "JJ", A, ACOUSTIC, MAPLE, BRAZILIAN_ROSEWOOD));
+        inventory.addInstrument("125", 220, new MandolinSpec(FENDER, "BB", F, ELECTRIC, INDIAN_ROSEWOOD, MAHOGANY));
+        inventory.addInstrument("138", 330, new MandolinSpec(GIBSON, "FF", F, ACOUSTIC, MAPLE, INDIAN_ROSEWOOD));
+        inventory.addInstrument("147", 330, new MandolinSpec(MARTIN, "JJ", A, ACOUSTIC, MAPLE, BRAZILIAN_ROSEWOOD));
     }
 }

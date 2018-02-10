@@ -19,14 +19,13 @@ public class MandolinSpec extends InstrumentSpec {
 
     @Override
     public boolean matches(InstrumentSpec requiredSpec) {
-        if(requiredSpec instanceof MandolinSpec)
-            return false;
+        if(requiredSpec instanceof MandolinSpec) {
+            MandolinSpec spec = (MandolinSpec) requiredSpec;
+            if(!style.equals(spec.getStyle()))
+                return false;
+        }
         if(!super.matches(requiredSpec))
             return false;
-        MandolinSpec spec = (MandolinSpec) requiredSpec;
-        if(!style.equals(spec.getStyle()))
-            return false;
         return true;
-
     }
 }

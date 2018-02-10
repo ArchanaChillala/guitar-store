@@ -7,7 +7,7 @@ import com.archana.specs.Wood;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
 
-public abstract class InstrumentSpec {
+public class InstrumentSpec {
     private Builder builder;
     private String model;
     private Type type;
