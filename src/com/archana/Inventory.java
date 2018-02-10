@@ -3,6 +3,7 @@ package com.archana;
 
 import com.archana.instruments.Instrument;
 import com.archana.instruments.InstrumentSpec;
+import com.archana.instruments.InstrumentType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,8 @@ public class Inventory {
         instruments = new ArrayList();
     }
 
-    public void addInstrument(String serialNumber, double price, InstrumentSpec spec) {
-        Instrument instrument = new Instrument(serialNumber, price, spec);
+    public void addInstrument(String serialNumber, double price, InstrumentType type, InstrumentSpec spec) {
+        Instrument instrument = new Instrument(serialNumber, price, type, spec);
         instruments.add(instrument);
    }
 
